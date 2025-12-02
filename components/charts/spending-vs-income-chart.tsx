@@ -1,6 +1,15 @@
 "use client";
 
-import { ResponsiveContainer, LineChart, CartesianGrid, Tooltip, Legend, XAxis, YAxis, Line } from "recharts";
+import {
+  ResponsiveContainer,
+  LineChart,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  XAxis,
+  YAxis,
+  Line
+} from "recharts";
 
 export function SpendingVsIncomeChart({
   data
