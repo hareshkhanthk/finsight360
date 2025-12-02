@@ -34,14 +34,6 @@ export async function getSession() {
   return session;
 }
 
-export async function requireSession() {
-  const session = await getSession();
-  if (!session) {
-    throw new Error("Unauthorized");
-  }
-  return session;
-}
-
 export async function destroySession() {
   const c = cookies();
   const id = c.get(SESSION_COOKIE)?.value;
