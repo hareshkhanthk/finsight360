@@ -1,21 +1,66 @@
-import { motion } from "framer-motion";
+"use client";
 
-interface StatCardProps {
-  label: string;
-  value: string;
-  hint?: string;
-}
+import React from "react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 
-export function StatCard({ label, value, hint }: StatCardProps) {
+export default function HomeCards() {
+  const metrics = [
+    {
+      label: "Total Income",
+      value: "₹145,200",
+      change: "+12.4%",
+      positive: true,
+    },
+    {
+      label: "Total Expense",
+      value: "₹92,800",
+      change: "-4.2%",
+      positive: false,
+    },
+    {
+      label: "Net Savings",
+      value: "₹52,400",
+      change: "+18.1%",
+      positive: true,
+    },
+  ];
+
   return (
-    <motion.div
-      className="rounded-2xl bg-white/5 border border-white/10 p-4 flex flex-col gap-1 shadow-sm"
-      whileHover={{ y: -2, scale: 1.01 }}
-      transition={{ type: "spring", stiffness: 300, damping: 22 }}
-    >
-      <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="text-lg font-semibold">{value}</p>
-      {hint && <p className="text-[11px] text-muted-foreground">{hint}</p>}
-    </motion.div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {metrics.map((m, i) => (
+        <Card
+          key={i}
+          className="
+            p-4 
+            transition-all duration-300 
+            hover:shadow-xl 
+            hover:-translate-y-1
+            rounded-xl
+          "
+        >
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-gray-500">{m.label}</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <div className="text-2xl font-bold">{m.value}</div>
+
+            <div
+              className={`flex items-center gap-1 mt-1 text-sm font-medium ${
+                m.positive ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {m.positive ? (
+                <ArrowUpRight size={18} />
+              ) : (
+                <ArrowDownRight size={18} />
+              )}
+              {m.change}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
   );
 }
