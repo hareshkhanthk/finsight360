@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {},
+  // optional: you can add config here later if needed
 };
 
 export default nextConfig;
